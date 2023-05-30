@@ -102,7 +102,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                checkAnswer(false);
+                checkAnswer(true);
               },
             ),
           ),
@@ -126,8 +126,11 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        Row(
-          children: scoreKeeper,
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: scoreKeeper,
+          ),
         ),
       ],
     );
