@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
 
-void main() => runApp(QuizApp());
+QuizBrain quizBrain = QuizBrain();
+void main() => runApp(const QuizApp());
 
 class QuizApp extends StatelessWidget {
   const QuizApp({super.key});
@@ -31,24 +32,9 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  // List<String> questions = [
-  //   'You can lead a cow down stairs but not up stairs.',
-  //   'Approximatelyone quarter of human bones are in the feet.',
-  //   'A slug\'s blood is green.'
-  // ];
 
-  // List<bool> answers = [false, true, true];
-  // Question q1 = Question(
-  //     q: 'You can lead a cow down stairs but not up stairs.', a: false);
-
-  //list that contains Question object
-  List<Question> questionBank = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximatelyone quarter of human bones are in the feet.', a: true),
-    Question(q: 'A slug\'s blood is green.', a: true)
-  ];
   int questionNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].questionText,
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -87,7 +73,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.
                 bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   print('user got it right!');
                 } else {
@@ -117,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == false) {
                   print('user got it right!');
                 } else {
